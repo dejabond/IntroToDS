@@ -24,6 +24,11 @@ metadata=metadata.drop_duplicates()
 metadata=metadata.loc[metadata.id!=3647]
 metadata
 
+#Normalizing Data for metadata
+metadata["budget"]=(metadata["budget"]-metadata["budget"].mean())/metadata["budget"].std()
+metadata["popularity"]=(metadata["popularity"]-metadata["popularity"].mean())/metadata["popularity"].std()
+metadata["revenue"]=(metadata["revenue"]-metadata["revenue"].mean())/metadata["revenue"].std()
+metadata["vote_count"]=(metadata["vote_count"]-metadata["vote_count"].mean())/metadata["vote_count"].std()
 
 # In[131]:
 
@@ -38,6 +43,11 @@ rev_data=rev_data.drop("Worldwide Gross($M)",1)
 rev_data=rev_data.rename(columns={"Movie":"title"})
 rev_data=rev_data.drop_duplicates()
 rev_data.head()
+
+#Normalizing Data for revenue data
+rev_data["Budget"]=(rev_data["Budget"]-rev_data["Budget"].mean())/rev_data["Budget"].std()
+rev_data["Worldwide Gross"]=(rev_data["Budget"]-rev_data["Worldwide Gross"].min())/(rev_data["Worldwide Gross"].max()-rev_data["Worldwide Gross"].min())
+rev_data["Domestic Gross"]=(rev_data["Domestic Gross"]-rev_data["Domestic Gross"].mean())/rev_data["Domestic Gross"].std()
 
 
 # In[102]:
